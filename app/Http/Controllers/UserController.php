@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,9 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'message' => "users list",
-        ]);
+        return User::all();
     }
 
     /**
@@ -21,7 +20,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // User::create([]);
+
+        return "post user";
     }
 
     /**
@@ -29,7 +30,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([$request]);
+
+        return "store user";
     }
 
     /**
@@ -37,9 +40,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return response()->json([
-            'message' => "user id: ${id}",
-        ]);
+        return User::findOrFail($id);
     }
 
     /**
@@ -47,7 +48,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return User::findOrFail($id);
     }
 
     /**
@@ -55,7 +56,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return User::findOrFail($id)->update([$request]);
     }
 
     /**
@@ -63,6 +64,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return User::findOrFail($id)->delete();
     }
 }

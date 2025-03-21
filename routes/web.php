@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 
 // Home
-Route::get("/", [HomeController::class, "index"]);
+Route::get("/", HomeController::class);
 
 // Users
 Route::resource("users", UserController::class);
